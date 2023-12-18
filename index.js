@@ -21,6 +21,7 @@ bot.onText(/\/start/, (msg) => {
     chatId,
     `Welcome! You can search for a phone number by sending it to me.`
   );
+  console.log("User", msg.from.username, "started the bot");
 });
 
 bot.onText(/(\d+)/, async (msg, match) => {
@@ -64,9 +65,10 @@ bot.onText(/(\d+)/, async (msg, match) => {
               ? countryDetails.languages.join(", ")
               : "Not available"
           }\n`;
-
+          console.log(message);
           bot.sendMessage(chatId, message);
         } else {
+          console.log("No information found for the number:", phoneNumber);
           bot.sendMessage(
             chatId,
             `I'm sorry, but I couldn't find any information related to the number: ${phoneNumber}.`
